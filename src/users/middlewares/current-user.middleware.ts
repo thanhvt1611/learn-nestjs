@@ -6,7 +6,7 @@ import { User } from "../user.entity";
 declare global {
     namespace Express {
         interface Request {
-            currentUser?: User;
+            CurrentUser?: User;
         }
     }
 }
@@ -20,7 +20,7 @@ export class CurrentUserMiddleware implements NestMiddleware {
         const { userId } = req.session || {};
         if(userId) {
             const user = await this.usersService.findOne(userId);
-            req.currentUser = user;
+            req.CurrentUser = user;
         }
 
         next();

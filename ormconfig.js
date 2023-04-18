@@ -5,20 +5,19 @@ var dbConfig = {
       migrationsDir: 'migrations',
     },
   };
-  console.log('NODE_ENV:::', process.env.NODE_ENV)
   switch (process.env.NODE_ENV) {
     case 'development':
       Object.assign(dbConfig, {
         type: 'sqlite',
         database: 'db.sqlite',
-        entities: ['**/*.entity.js'],
+        entities: [__dirname + '/**/*.entity.js'],
       });
       break;
     case 'test':
       Object.assign(dbConfig, {
         type: 'sqlite',
         database: 'test.sqlite',
-        entities: ['**/*.entity.ts'],
+        entities: [__dirname + '**/*.entity.ts'],
         migrationsRun: true,
       });
       break;
