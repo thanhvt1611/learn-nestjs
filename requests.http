@@ -1,0 +1,66 @@
+### Sign Up
+POST http://localhost:3000/auth/signup
+content-type: application/json
+
+{
+    "email": "new@example.com",
+    "password": "123456"
+}
+
+### Find User by Id
+GET http://localhost:3000/auth/2
+
+
+### Find User by email
+GET http://localhost:3000/auth?email=new@example.com
+
+### Delete User by Id
+DELETE http://localhost:3000/auth/11
+
+### Update user by id
+PATCH http://localhost:3000/auth/6
+content-type: application/json
+
+{
+    "isAdmin": true
+}
+
+### Sign-in 
+POST http://localhost:3000/auth/signin
+content-type: application/json
+
+{
+    "email": "vtthanh@gmail.com",
+    "password": "123456"
+}
+
+### Get current user
+GET http://localhost:3000/auth/whoami
+
+### Sign-out
+POST http://localhost:3000/auth/signout
+
+### Create Report
+POST http://localhost:3000/reports
+content-type: application/json
+
+{
+    "price": 30000,
+    "make": "ford",
+    "model": "mustang",
+    "year": 1985,
+    "lng": 45,
+    "lat": 45,
+    "mileage": 50000
+}
+
+### Patch approval for report
+PATCH http://localhost:3000/reports/9
+content-type: application/json
+
+{
+    "approved": true
+}
+
+### Get Estimate Vehicle
+GET http://localhost:3000/reports?make=ford&model=mustang&lng=45&lat=45&mileage=20000&year=1985
