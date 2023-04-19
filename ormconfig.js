@@ -1,6 +1,6 @@
 var dbConfig = {
     synchronize: false,
-    migrations: ['migrations/*.js'],
+    migrations: [__dirname + '/migrations/*.js'],
     cli: {
       migrationsDir: 'migrations',
     },
@@ -10,14 +10,16 @@ var dbConfig = {
       Object.assign(dbConfig, {
         type: 'sqlite',
         database: 'db.sqlite',
-        entities: [__dirname + '/**/*.entity.js'],
+        entities: ['/**/*.entity.js'],
+        autoLoadEntities: true,
       });
       break;
     case 'test':
       Object.assign(dbConfig, {
         type: 'sqlite',
         database: 'test.sqlite',
-        entities: [__dirname + '**/*.entity.ts'],
+        entities: ['**/*.entity.ts'],
+        autoLoadEntities: true,
         migrationsRun: true,
       });
       break;

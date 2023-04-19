@@ -37,14 +37,10 @@ export class UsersController {
 
     @Post('/signin')
     async signIn(@Body() body: CreateUserDto, @Session() session: any) {
-        try {
-            const {email, password} = body;
-            const user = await this.authService.signIn(email, password);
-            session.userId = user.id;
-            return user
-        } catch (err) {
-            throw new Error(err);
-        }
+        const {email, password} = body;
+        const user = await this.authService.signIn(email, password);
+        session.userId = user.id;
+        return user;
     }
 
     @Post('/signout')
