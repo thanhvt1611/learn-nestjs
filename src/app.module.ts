@@ -6,8 +6,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
-import { User } from './users/user.entity';
-import { Report } from './reports/report.entity';
+import { User } from './users/entities/user.entity';
+import { Report } from './reports/entities/report.entity';
+import { dataSourceOptions } from 'db/data-source';
 const cookieSession = require('cookie-session');
 const ormConfig = require('../ormconfig');
 
@@ -17,7 +18,10 @@ const ormConfig = require('../ormconfig');
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
-    TypeOrmModule.forRoot(ormConfig),
+    TypeOrmModule.forRoot({
+      ...dataSourceOptions,
+      autoLoadEntities: true,
+    }),
     UsersModule,
     ReportsModule,
   ],
