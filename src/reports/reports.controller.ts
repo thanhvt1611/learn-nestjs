@@ -1,12 +1,12 @@
-import { 
-    Controller,
-    UseGuards,
-    Body,
-    Param,
-    Post,
-    Patch,
-    Get,
-    Query,
+import {
+  Controller,
+  UseGuards,
+  Body,
+  Param,
+  Post,
+  Patch,
+  Get,
+  Query,
 } from '@nestjs/common';
 import { CreateReportDTO } from './dtos/create-report.dto';
 import { ReportsService } from './reports.service';
@@ -21,26 +21,23 @@ import { GetEstimateDTO } from './dtos/get-estimate.dto';
 
 @Controller('reports')
 export class ReportsController {
-    constructor(
-        private reportsService: ReportsService
-    ) {}
+  constructor(private reportsService: ReportsService) {}
 
-    @Post()
-    @UseGuards(AuthGuard)
-    @Serialize(ReportDto)
-    createReport(@Body() body: CreateReportDTO, @CurrentUser() user: User) {
-        return this.reportsService.create(body, user);
-    }
+  @Post()
+  @UseGuards(AuthGuard)
+  @Serialize(ReportDto)
+  createReport(@Body() body: CreateReportDTO, @CurrentUser() user: User) {
+    return this.reportsService.create(body, user);
+  }
 
-    @Patch('/:id')
-    @UseGuards(AdminGuard)
-    approveReport(@Param('id') id: number, @Body() body: ApproveReport) {
-        return this.reportsService.changeApproval(id, body.approved);
-    }
+  @Patch('/:id')
+  @UseGuards(AdminGuard)
+  approveReport(@Param('id') id: number, @Body() body: ApproveReport) {
+    return this.reportsService.changeApproval(id, body.approved);
+  }
 
-    @Get()
-    getEstimate(@Query() query: GetEstimateDTO) {
-        return this.reportsService.createEstimate(query);
-    }
-
+  @Get()
+  getEstimate(@Query() query: GetEstimateDTO) {
+    return this.reportsService.createEstimate(query);
+  }
 }

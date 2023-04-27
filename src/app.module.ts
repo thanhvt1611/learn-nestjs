@@ -6,21 +6,22 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
-import { User } from './users/entities/user.entity';
-import { Report } from './reports/entities/report.entity';
-import { dataSourceOptions } from 'db/data-source';
+import { getTypeOrmModuleOptions } from 'db/data-source';
 const cookieSession = require('cookie-session');
-const ormConfig = require('../ormconfig');
-
+// import cookieSession from 'cookie-session';
+console.log('getTypeOrmModuleOptions:::', getTypeOrmModuleOptions());
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
-    TypeOrmModule.forRoot({
-      ...dataSourceOptions,
-      autoLoadEntities: true,
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        ...getTypeOrmModuleOptions(),
+      }),
     }),
     UsersModule,
     ReportsModule,

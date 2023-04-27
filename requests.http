@@ -15,7 +15,7 @@ GET http://localhost:3000/auth/2
 GET http://localhost:3000/auth?email=new@example.com
 
 ### Delete User by Id
-DELETE http://localhost:3000/auth/11
+DELETE http://localhost:3000/auth/a5443ba1-d540-488d-be60-c1de78dab0f4
 
 ### Update user by id
 PATCH http://localhost:3000/auth/6

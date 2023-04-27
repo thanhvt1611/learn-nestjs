@@ -18,11 +18,11 @@
     "test:cov": "cross-env NODE_ENV=test jest --coverage",
     "test:debug": "cross-env NODE_ENV=test node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "cross-env NODE_ENV=test jest --config ./test/jest-e2e.json --maxWorkers=1",
-    "typeorm": "cross-env NODE_ENV=development npm run build && npx typeorm-ts-node-commonjs -d ./dist/db/data-source.js",
-    "migration:create": "npm run typeorm migration:create",
-    "migration:generate": "npm run typeorm migration:generate",
-    "migration:run": "npm run typeorm migration:run",
-    "migration:revert": "npm run typeorm migration:revert"
+    "typeorm": "cross-env NODE_ENV=development typeorm-ts-node-esm",
+    "migration:create": "npm run typeorm migration:create -- -d ./db/data-source.ts",
+    "migration:generate": "npm run typeorm migration:generate -- -d ./db/data-source.ts",
+    "migration:run": "npm run typeorm migration:run -- -d ./db/data-source.ts",
+    "migration:revert": "npm run typeorm migration:revert -- -d ./db/data-source.ts"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -35,7 +35,6 @@
     "class-validator": "^0.14.0",
     "cookie-session": "^2.0.0",
     "cross-env": "^7.0.3",
-    "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
     "sqlite3": "^5.1.6",

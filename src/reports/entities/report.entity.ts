@@ -1,40 +1,35 @@
-import { 
-    Entity, 
-    Column, 
-    PrimaryGeneratedColumn,
-    ManyToOne,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 
 @Entity()
 export class Report {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    price: number;
+  @Column()
+  price: number;
 
-    @Column()
-    make: string;
+  @Column()
+  make: string;
 
-    @Column()
-    model: string;
+  @Column()
+  model: string;
 
-    @Column()
-    year: number;
+  @Column()
+  year: number;
 
-    @Column()
-    lng: number;
+  @Column()
+  lng: number;
 
-    @Column()
-    lat: number;
+  @Column()
+  lat: number;
 
-    @Column()
-    mileage: number;
+  @Column()
+  mileage: number;
 
-    @Column({ default: false })
-    approved: boolean;
+  @Column({ default: false })
+  approved: boolean;
 
-    @ManyToOne((type) => User, (user) => user.reports)
-    user: User;
+  @ManyToOne((type) => User, (user) => user.reports)
+  user: User;
 }
