@@ -6,10 +6,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
-import { getTypeOrmModuleOptions } from 'db/data-source';
+import { getTypeOrmModuleOptions } from './config/data-source';
 const cookieSession = require('cookie-session');
-// import cookieSession from 'cookie-session';
-console.log('getTypeOrmModuleOptions:::', getTypeOrmModuleOptions());
 @Module({
   imports: [
     ConfigModule.forRoot({

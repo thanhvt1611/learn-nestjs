@@ -43,9 +43,9 @@ export const getDataSourceOptions = (): DataSourceOptions => {
   } as DataSourceOptions;
   Object.assign(options, {
     migrationsTableName: '__migrations',
-    migrations: ['./db/migrations/*.ts'],
+    migrations: ['./dist/config/migrations/{*.ts, *.js}'],
     cli: {
-      migrationsDir: 'db/migrations',
+      migrationsDir: 'src/config/migrations',
     },
   } as Partial<DataSourceOptions>);
   return options;

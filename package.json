@@ -19,10 +19,10 @@
     "test:debug": "cross-env NODE_ENV=test node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "cross-env NODE_ENV=test jest --config ./test/jest-e2e.json --maxWorkers=1",
     "typeorm": "cross-env NODE_ENV=development typeorm-ts-node-esm",
-    "migration:create": "npm run typeorm migration:create -- -d ./db/data-source.ts",
-    "migration:generate": "npm run typeorm migration:generate -- -d ./db/data-source.ts",
-    "migration:run": "npm run typeorm migration:run -- -d ./db/data-source.ts",
-    "migration:revert": "npm run typeorm migration:revert -- -d ./db/data-source.ts"
+    "migration:create": "npm run typeorm migration:create",
+    "migration:generate": "npm run typeorm migration:generate -- -d ./src/config/data-source.ts",
+    "migration:run": "npm run typeorm migration:run -- -d ./src/config/data-source.ts",
+    "migration:revert": "npm run typeorm migration:revert -- -d ./src/config/data-source.ts"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -80,5 +80,7 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "target": "esnext",
+  "module": "commonjs"
 }
