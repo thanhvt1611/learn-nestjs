@@ -19,6 +19,7 @@ export const getTypeOrmModuleOptions = (): TypeOrmModuleOptions => {
       Object.assign(dbOptions, {
         type: 'sqlite',
         database: 'test.sqlite',
+        migrationsRun: true,
       });
       break;
     case 'production':
@@ -43,21 +44,13 @@ export const getDataSourceOptions = (): DataSourceOptions => {
   } as DataSourceOptions;
   Object.assign(options, {
     migrationsTableName: '__migrations',
-    migrations: ['./dist/config/migrations/{*.ts, *.js}'],
+    migrations: [__dirname + '/../migrations/*.{ts,js}'],
     cli: {
-      migrationsDir: 'src/config/migrations',
+      migrationsDir: __dirname + '/../migrations',
     },
   } as Partial<DataSourceOptions>);
   return options;
 };
 
 const dataSource = new DataSource(getDataSourceOptions());
-dataSource
-  .initialize()
-  .then(() => {
-    console.log('Data Source has been initialized!');
-  })
-  .catch((err) => {
-    console.error('Error during Data Source initialization', err);
-  });
 export default dataSource;

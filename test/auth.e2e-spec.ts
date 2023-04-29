@@ -20,12 +20,12 @@ describe('Authentication testing', () => {
 
     return request(app.getHttpServer())
       .post('/auth/signup')
-      .send({email, password: '123456'})
+      .send({ email, password: '123456' })
       .expect(201)
       .then((res) => {
         const { id, email } = res.body.data;
         expect(id).toBeDefined();
         expect(email).toEqual(email);
-      })
+      });
   });
 });

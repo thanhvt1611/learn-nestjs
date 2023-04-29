@@ -21,7 +21,7 @@ export class User {
   password: string;
 
   @Column({ default: true })
-  isAdmin: boolean;
+  admin: boolean;
 
   @OneToMany((type) => Report, (report) => report.user)
   reports: Report[];

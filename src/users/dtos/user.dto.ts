@@ -8,5 +8,5 @@ export class UserDto {
   email: string;
 
   @Expose()
-  isAdmin: string;
+  admin: string;
 }
